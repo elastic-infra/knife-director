@@ -1,0 +1,14 @@
+AllCops:
+  TargetRubyVersion: 2.4
+
+# Offense count: 3
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Metrics/LineLength:
+  Max: 96
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'lib/knife/director.rb'
