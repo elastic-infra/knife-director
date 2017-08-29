@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'chef', '>= 12.2.1'
-  spec.add_development_dependency 'knife-zero'
-  spec.add_development_dependency 'knife-windows'
-  spec.add_development_dependency 'knife-bootstrap-resolver'
+  spec.add_dependency 'knife-zero'
+  spec.add_dependency 'knife-windows'
+  spec.add_dependency 'knife-bootstrap-resolver'
 end
