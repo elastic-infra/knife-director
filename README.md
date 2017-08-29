@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/knife-director.svg)](https://badge.fury.io/rb/knife-director)
+
 # Knife::Director
 
 This gem provides wrappers for `knife bootstrap` or `knife zero` and so on.
