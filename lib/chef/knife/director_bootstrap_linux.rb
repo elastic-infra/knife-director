@@ -17,7 +17,8 @@ module ElasticInfra
       Chef::Knife::Bootstrap.load_deps
     end
 
-    banner 'knife director bootstrap linux [SSH_USER@]HOSTNAME -E ENVIRONMENT [options]'
+    banner 'knife director bootstrap linux ' \
+           '[SSH_USER@]HOSTNAME -E ENVIRONMENT [options]'
 
     self.options = Bootstrap.options.merge(options)
 
