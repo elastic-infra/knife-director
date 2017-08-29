@@ -15,9 +15,9 @@ module ElasticInfra
       Chef::Knife::BootstrapWindowsWinrm.load_deps
     end
 
-    banner "knife director bootstrap windows [SSH_USER@]HOSTNAME [options]"
+    banner 'knife director bootstrap windows [SSH_USER@]HOSTNAME [options]'
 
-    self.options = BootstrapWindowsWinrm.options.merge(self.options)
+    self.options = BootstrapWindowsWinrm.options.merge(options)
 
     def run
       unless config[:environment]
