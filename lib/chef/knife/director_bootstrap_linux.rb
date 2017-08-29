@@ -5,6 +5,7 @@ require 'chef/knife/bootstrap'
 require 'chef/knife/bootstrap_resolver'
 
 module ElasticInfra
+  # knife bootstrap wrapper for Linux
   class DirectorBootstrapLinux < Chef::Knife::Bootstrap
     # Wraps like:
     # sudo -E knife bootstrap \
@@ -32,12 +33,13 @@ module ElasticInfra
       end
       target_hostname = name_args[0].gsub(/.*@/, '')
       config[:chef_node_name] ||= target_hostname
-      if config[:bootstrap_template] == '__no_template__'
-        config[:bootstrap_template] = nil
-      else
-        config[:bootstrap_template] ||= 'linux'
-      end
+      config[:bootstrap_template] = bootstrap_template
       super
+    end
+
+    def bootstrap_template
+      return nil if config[:bootstrap_template] == '__no_template__'
+      config[:bootstrap_template] || 'linux'
     end
   end
 end
