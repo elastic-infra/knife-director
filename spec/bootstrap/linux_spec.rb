@@ -13,7 +13,6 @@ RSpec.describe ElasticInfra::DirectorBootstrapLinux do
   end
 
   describe '#bootstrap_template' do
-
     it 'returns nil for __no_template__' do
       bs.config[:bootstrap_template] = '__no_template__'
       expect(bs.bootstrap_template).to eq nil
@@ -52,7 +51,7 @@ RSpec.describe ElasticInfra::DirectorBootstrapLinux do
         it 'calls super with chef_node_name and bootstrap_template' do
           bs.name_args = ['host0001']
           bs.config[:bootstrap_template] = 'bar'
-          # It raises PrivateKeyMissing by calling super, without chef-server credential
+          # PrivateKeyMissing by calling super, without chef-server credential
           expect {
             bs.run
           }.to raise_error(Chef::Exceptions::PrivateKeyMissing)
@@ -63,7 +62,7 @@ RSpec.describe ElasticInfra::DirectorBootstrapLinux do
         it 'calls super with chef_node_name and bootstrap_template' do
           bs.name_args = ['host0001.example.com']
           bs.config[:bootstrap_template] = 'bar'
-          # It raises PrivateKeyMissing by calling super, without chef-server credential
+          # PrivateKeyMissing by calling super, without chef-server credential
           expect {
             bs.run
           }.to raise_error(Chef::Exceptions::PrivateKeyMissing)
