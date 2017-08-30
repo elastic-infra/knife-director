@@ -36,9 +36,9 @@ knife director bootstrap windows $target -E $env
 
 ## Provided commands
 
-### knife director bootstrap XXX
+### knife director bootstrap $OS
 
-`XXX` can be `linux` or `windows`.
+`$OS` can be `linux` or `windows`.
 
 It wraps `knife bootstrap` or `knife bootstrap windows winrm`.
 You can't omit `-E (--environment)` option.
