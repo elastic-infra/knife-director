@@ -6,3 +6,15 @@ Style/Documentation:
     - 'spec/**/*'
     - 'test/**/*'
     - 'lib/knife/director.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+  FunctionalMethods:
+    - let
+    - let!
+    - expect
+    - git_source
