@@ -1,10 +1,11 @@
-[![Gem Version](https://badge.fury.io/rb/knife-director.svg)](https://badge.fury.io/rb/knife-director)
+# Knife::Director
+
 [![CircleCI](https://circleci.com/gh/elastic-infra/knife-director.svg?style=svg)](https://circleci.com/gh/elastic-infra/knife-director)
+[![Gem Version](https://badge.fury.io/rb/knife-director.svg)](https://badge.fury.io/rb/knife-director)
 [![Code Climate](https://codeclimate.com/github/elastic-infra/knife-director/badges/gpa.svg)](https://codeclimate.com/github/elastic-infra/knife-director)
 [![Test Coverage](https://codeclimate.com/github/elastic-infra/knife-director/badges/coverage.svg)](https://codeclimate.com/github/elastic-infra/knife-director/coverage)
 [![Issue Count](https://codeclimate.com/github/elastic-infra/knife-director/badges/issue_count.svg)](https://codeclimate.com/github/elastic-infra/knife-director)
-
-# Knife::Director
+![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)
 
 This gem provides wrappers for `knife bootstrap` or `knife zero` and so on.
 
