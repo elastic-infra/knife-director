@@ -12,6 +12,10 @@ module ElasticInfra
     #   host0001 -N host0001 \
     #   -E production \
     #   --bootstrap-template windows
+    DEFAULT_TEMPLATE = 'windows'
+
+    include DirectorBootstrapBase
+
     deps do
       Chef::Knife::BootstrapWindowsWinrm.load_deps
     end
@@ -20,6 +24,11 @@ module ElasticInfra
            '[SSH_USER@]HOSTNAME [options]'
 
     self.options = BootstrapWindowsWinrm.options.merge(options)
+
+    def initialize(argv = [])
+      @default_template = DEFAULT_TEMPLATE
+      super
+    end
 
     def run
       unless config[:environment]
@@ -31,11 +40,6 @@ module ElasticInfra
       config[:chef_node_name] ||= target_hostname
       config[:bootstrap_template] = bootstrap_template
       super
-    end
-
-    def bootstrap_template
-      return nil if config[:bootstrap_template] == '__no_template__'
-      config[:bootstrap_template] || 'windows'
     end
   end
 end

@@ -3,6 +3,7 @@
 require 'chef/knife'
 require 'chef/knife/bootstrap'
 require 'chef/knife/bootstrap_resolver'
+require 'chef/knife/director_bootstrap_base'
 
 module ElasticInfra
   # knife bootstrap wrapper for Linux
@@ -13,6 +14,10 @@ module ElasticInfra
     #   host0001 -N host0001 \
     #   -E production \
     #   -t linux
+    DEFAULT_TEMPLATE = 'linux'
+
+    include DirectorBootstrapBase
+
     deps do
       Chef::Knife::Bootstrap.load_deps
     end
@@ -23,6 +28,7 @@ module ElasticInfra
     self.options = Bootstrap.options.merge(options)
 
     def initialize(argv = [])
+      @default_template = DEFAULT_TEMPLATE
       super
     end
 
@@ -36,11 +42,6 @@ module ElasticInfra
       config[:chef_node_name] ||= target_hostname
       config[:bootstrap_template] = bootstrap_template
       super
-    end
-
-    def bootstrap_template
-      return nil if config[:bootstrap_template] == '__no_template__'
-      config[:bootstrap_template] || 'linux'
     end
   end
 end
