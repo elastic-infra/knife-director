@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/knife-director.svg)](https://badge.fury.io/rb/knife-director)
+[![CircleCI](https://circleci.com/gh/elastic-infra/knife-director.svg?style=svg)](https://circleci.com/gh/elastic-infra/knife-director)
 
 # Knife::Director
 
