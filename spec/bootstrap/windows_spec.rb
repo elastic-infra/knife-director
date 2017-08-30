@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'chef/knife/director_bootstrap_linux'
+require 'chef/knife/director_bootstrap_windows'
 
-RSpec.describe ElasticInfra::DirectorBootstrapLinux do
+RSpec.describe ElasticInfra::DirectorBootstrapWindows do
   let(:bs) {
-    ElasticInfra::DirectorBootstrapLinux.new
+    ElasticInfra::DirectorBootstrapWindows.new
   }
 
   it 'can be initialized as a Chef::Knife instance' do
@@ -20,7 +20,7 @@ RSpec.describe ElasticInfra::DirectorBootstrapLinux do
 
     it 'returns linux if nothing passed' do
       bs.config[:bootstrap_template] = nil
-      expect(bs.bootstrap_template).to eq 'linux'
+      expect(bs.bootstrap_template).to eq 'windows'
     end
 
     it 'returns the template name if passed' do
@@ -51,6 +51,7 @@ RSpec.describe ElasticInfra::DirectorBootstrapLinux do
         it 'calls super with chef_node_name and bootstrap_template' do
           bs.name_args = ['host0001']
           bs.config[:bootstrap_template] = 'bar'
+          bs.config[:winrm_password] = 'baz'
           # PrivateKeyMissing by calling super, without chef-server credential
           expect {
             bs.run
@@ -62,6 +63,7 @@ RSpec.describe ElasticInfra::DirectorBootstrapLinux do
         it 'calls super with chef_node_name and bootstrap_template' do
           bs.name_args = ['host0001.example.com']
           bs.config[:bootstrap_template] = 'bar'
+          bs.config[:winrm_password] = 'baz'
           # PrivateKeyMissing by calling super, without chef-server credential
           expect {
             bs.run
@@ -74,7 +76,7 @@ RSpec.describe ElasticInfra::DirectorBootstrapLinux do
   describe '#deps' do
     it 'does not raise' do
       expect {
-        ElasticInfra::DirectorBootstrapLinux.load_deps
+        ElasticInfra::DirectorBootstrapWindows.load_deps
       }.not_to raise_error
     end
   end
