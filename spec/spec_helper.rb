@@ -1,7 +1,10 @@
+# coding: utf-8
 # frozen_string_literal: true
 
 require 'bundler/setup'
 require 'knife/director'
+require 'simplecov'
+require 'codeclimate-test-reporter'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -13,4 +16,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+end
+
+SimpleCov.start do
+  add_filter '/vendor/'
+  add_filter '/spec/'
 end
