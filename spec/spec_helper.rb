@@ -18,9 +18,6 @@ RSpec.configure do |config|
   end
 end
 
-coverage_dir = File.join(ENV['CIRCLE_ARTIFACTS'] || 'build', 'coverage')
-SimpleCov.coverage_dir(coverage_dir)
-
 SimpleCov.start do
   add_filter '/vendor/'
   add_filter '/spec/'
