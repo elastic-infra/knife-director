@@ -2,6 +2,7 @@
 
 require 'chef/knife'
 require 'chef/knife/bootstrap_windows_winrm'
+require 'chef/knife/director_bootstrap_base'
 
 module ElasticInfra
   # knife bootstrap wrapper for Windows
