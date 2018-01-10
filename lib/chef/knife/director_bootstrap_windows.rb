@@ -22,7 +22,7 @@ module ElasticInfra
     end
 
     banner 'knife director bootstrap windows ' \
-           '[SSH_USER@]HOSTNAME [options]'
+           '[SSH_USER@]HOSTNAME -E ENVIRONMENT [options]'
 
     self.options = BootstrapWindowsWinrm.options.merge(options)
 
