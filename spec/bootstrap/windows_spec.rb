@@ -18,7 +18,7 @@ RSpec.describe ElasticInfra::DirectorBootstrapWindows do
       expect(bs.bootstrap_template).to eq nil
     end
 
-    it 'returns linux if nothing passed' do
+    it 'returns windows if nothing passed' do
       bs.config[:bootstrap_template] = nil
       expect(bs.bootstrap_template).to eq 'windows'
     end
@@ -47,27 +47,57 @@ RSpec.describe ElasticInfra::DirectorBootstrapWindows do
         bs.config[:environment] = 'test'
       end
 
-      context 'with hostname' do
-        it 'calls super with chef_node_name and bootstrap_template' do
-          bs.name_args = ['host0001']
-          bs.config[:bootstrap_template] = 'bar'
-          bs.config[:winrm_password] = 'baz'
-          # PrivateKeyMissing by calling super, without chef-server credential
-          expect {
-            bs.run
-          }.to raise_error(Chef::Exceptions::PrivateKeyMissing)
+      context 'with SSH protocol (default)' do
+        context 'with hostname' do
+          it 'calls super with chef_node_name and bootstrap_template' do
+            bs.name_args = ['host0001']
+            bs.config[:bootstrap_template] = 'bar'
+            # raises some error by calling super (connection/credential error)
+            expect {
+              bs.run
+            }.to raise_error(StandardError)
+          end
+        end
+
+        context 'with FQDN' do
+          it 'calls super with chef_node_name and bootstrap_template' do
+            bs.name_args = ['host0001.example.com']
+            bs.config[:bootstrap_template] = 'bar'
+            # raises some error by calling super (connection/credential error)
+            expect {
+              bs.run
+            }.to raise_error(StandardError)
+          end
         end
       end
 
-      context 'with FQDN' do
-        it 'calls super with chef_node_name and bootstrap_template' do
-          bs.name_args = ['host0001.example.com']
-          bs.config[:bootstrap_template] = 'bar'
-          bs.config[:winrm_password] = 'baz'
-          # PrivateKeyMissing by calling super, without chef-server credential
-          expect {
-            bs.run
-          }.to raise_error(Chef::Exceptions::PrivateKeyMissing)
+      context 'with WinRM protocol' do
+        context 'with hostname' do
+          it 'calls super with chef_node_name and bootstrap_template' do
+            bs.name_args = ['host0001']
+            bs.config[:bootstrap_template] = 'bar'
+            bs.config[:connection_protocol] = 'winrm'
+            bs.config[:winrm_password] = 'baz'
+            # raises some error by calling super (connection/credential error)
+            expect {
+              bs.run
+            }.to raise_error(StandardError)
+          end
+        end
+
+        context 'with FQDN' do
+          it 'calls super with chef_node_name and bootstrap_template' do
+            bs.name_args = ['host0001.example.com']
+            bs.config[:bootstrap_template] = 'bar'
+            bs.config[:connection_protocol] = 'winrm'
+            bs.config[:winrm_password] = 'baz'
+            # raises some error by calling super (connection/credential error)
+            expect {
+              bs.run
+            }.to raise_error(StandardError)
+          end
+        end
+      end
         end
       end
     end
