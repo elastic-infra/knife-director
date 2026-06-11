@@ -98,8 +98,6 @@ RSpec.describe ElasticInfra::DirectorBootstrapWindows do
           end
         end
       end
-        end
-      end
     end
   end
 

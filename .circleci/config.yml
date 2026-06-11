@@ -1,8 +1,8 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-       - image: circleci/ruby:2.4.1-node-browsers
+       - image: cimg/ruby:3.1
     working_directory: ~/repo
 
     steps:
@@ -29,11 +29,6 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      - run:
-          name: Prepare CodeClimate
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-
       # run tests!
       - run:
           name: run tests
@@ -46,11 +41,6 @@ jobs:
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
                             ${TEST_FILES}
-
-      - run:
-          name: Report to CodeClimate
-          command: |
-            bundle exec codeclimate-test-reporter
 
       # collect reports
       - store_test_results:
