@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require 'chef/knife'
-require 'chef/knife/bootstrap_windows_winrm'
+require 'chef/knife/bootstrap'
+require 'chef/knife/bootstrap_resolver'
 require 'chef/knife/director_bootstrap_base'
 
 module ElasticInfra
   # knife bootstrap wrapper for Windows
-  class DirectorBootstrapWindows < Chef::Knife::BootstrapWindowsWinrm
+  class DirectorBootstrapWindows < Chef::Knife::Bootstrap
     # Wraps like:
     # sudo -E knife bootstrap \
     #   --why-run \
@@ -18,13 +19,13 @@ module ElasticInfra
     include DirectorBootstrapBase
 
     deps do
-      Chef::Knife::BootstrapWindowsWinrm.load_deps
+      Chef::Knife::Bootstrap.load_deps
     end
 
     banner 'knife director bootstrap windows ' \
            '[SSH_USER@]HOSTNAME -E ENVIRONMENT [options]'
 
-    self.options = BootstrapWindowsWinrm.options.merge(options)
+    self.options = Bootstrap.options.merge(options)
 
     def initialize(argv = [])
       @default_template = DEFAULT_TEMPLATE

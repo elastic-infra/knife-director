@@ -1,10 +1,7 @@
 # Knife::Director
 
-[![CircleCI](https://circleci.com/gh/elastic-infra/knife-director.svg?style=svg)](https://circleci.com/gh/elastic-infra/knife-director)
+[![CI](https://github.com/elastic-infra/knife-director/actions/workflows/ci.yml/badge.svg)](https://github.com/elastic-infra/knife-director/actions/workflows/ci.yml)
 [![Gem Version](https://badge.fury.io/rb/knife-director.svg)](https://badge.fury.io/rb/knife-director)
-[![Code Climate](https://codeclimate.com/github/elastic-infra/knife-director/badges/gpa.svg)](https://codeclimate.com/github/elastic-infra/knife-director)
-[![Test Coverage](https://codeclimate.com/github/elastic-infra/knife-director/badges/coverage.svg)](https://codeclimate.com/github/elastic-infra/knife-director/coverage)
-[![Issue Count](https://codeclimate.com/github/elastic-infra/knife-director/badges/issue_count.svg)](https://codeclimate.com/github/elastic-infra/knife-director)
 ![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)
 
 This gem provides wrappers for `knife bootstrap` or `knife zero` and so on.
@@ -41,7 +38,7 @@ knife director bootstrap windows $target -E $env
 
 `$OS` can be `linux` or `windows`.
 
-It wraps `knife bootstrap` or `knife bootstrap windows winrm`.
+It wraps `knife bootstrap` (chef/cinc 15+).
 You can't omit `-E (--environment)` option.
 
 You need not specify `-N (--node-name)` option since it sets FQDN as the node name,
@@ -49,6 +46,10 @@ but you can do it to explicitly specify.
 
 It automatically passes `--bootstrap-template` option to them.
 Prepare `.chef/bootstrap/{linux,windows}.erb` or pass `-t __no_template__` to disable template.
+
+For Windows, SSH is used by default. To use WinRM instead, pass `--connection-protocol winrm`.
+
+**Requirements:** chef or cinc 15 or later.
 
 ## Development
 
