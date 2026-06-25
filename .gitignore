@@ -16,7 +16,5 @@
 # vi
 *.swp
 
-.ruby-version
-
 # bundler
 vendor/bundle
